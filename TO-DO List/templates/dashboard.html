@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, {{ current_user.username }}! Your role is <strong>{{ current_user.role }}</strong>.</p>
+    <p><a href="{{ url_for('logout') }}">Logout</a></p>
+    
+    <h2>All Users and Their Todos</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Todos</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user_id, user in users.items() %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <ul>
+                        {% for todo in todos.get(user_id, []) %}
+                        <li>{{ todo['task'] }} - {{ 'Done' if todo['done'] else 'Pending' }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><a href="{{ url_for('index') }}">Back to Todo List</a></p>
+</body>
+</html>
