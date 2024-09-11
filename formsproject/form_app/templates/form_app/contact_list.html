@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+</head>
+<body>
+    <h1>Contact List</h1>
+    <ul>
+        {% for contact in contacts %}
+            <li>
+                <strong>Name:</strong> {{ contact.name }}<br>
+                <strong>Email:</strong> {{ contact.email }}<br>
+                <strong>Message:</strong> {{ contact.message }}<br>
+                <strong>Form Submitted  :</strong> {{ contact.created_at }}<br>
+            </br>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
